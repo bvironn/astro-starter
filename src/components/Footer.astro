@@ -1,0 +1,83 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-5 flex flex-col items-center justify-between gap-4 rounded-3xl border border-white/10 bg-white/5 p-4 text-sm text-white/35 shadow-sm backdrop-blur sm:flex-row">
+	<p class="flex items-center gap-2">
+		<span>© {year}</span>
+		<span>Hecho con</span>
+		<button
+			id="heart-easter-egg"
+			type="button"
+			aria-label="Easter egg de corazones"
+			class="inline-rounded-md text-red-400 transition hover:scale-110 hover:text-red-300"
+		>
+			<i class="fa-solid fa-heart" aria-hidden="true"></i>
+		</button>
+		<span>por</span>
+        <a
+            href="https://bvironn.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-xl text-white/50 transition hover:text-white"
+        >
+            @bviron
+        </a>
+	</p>
+
+	<div class="flex items-center gap-2">
+		<a
+			href="https://github.com/bvironn"
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label="GitHub"
+			class="rounded-xl bg-white/10 px-3 py-2 text-white/50 transition hover:bg-white/20 hover:text-white"
+		>
+			<i class="fa-brands fa-github"></i>
+		</a>
+		<a
+			href="https://twitter.com/bvironn"
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label="X / Twitter"
+			class="rounded-xl bg-white/10 px-3 py-2 text-white/50 transition hover:bg-white/20 hover:text-white"
+		>
+			<i class="fa-brands fa-x-twitter"></i>
+		</a>
+	</div>
+</footer>
+
+<script is:inline>
+	const heartTrigger = document.getElementById('heart-easter-egg');
+
+	heartTrigger?.addEventListener('click', (event) => {
+		const rect = heartTrigger.getBoundingClientRect();
+		const originX = event.clientX || rect.left + rect.width / 2;
+		const originY = event.clientY || rect.top + rect.height / 2;
+
+		for (let i = 0; i < 18; i++) {
+			const heart = document.createElement('i');
+			heart.className = 'fa-solid fa-heart pointer-events-none fixed z-50 text-red-400';
+			heart.style.left = `${originX}px`;
+			heart.style.top = `${originY}px`;
+			heart.style.transform = 'translate(-50%, -50%) scale(0.6)';
+			heart.style.filter = 'drop-shadow(0 0 8px rgba(248, 113, 113, 0.45))';
+
+			document.body.appendChild(heart);
+
+			const angle = Math.random() * Math.PI * 2;
+			const distance = 35 + Math.random() * 110;
+			const driftX = Math.cos(angle) * distance;
+			const driftY = Math.sin(angle) * distance - (50 + Math.random() * 90);
+			const duration = 700 + Math.random() * 550;
+
+			heart.animate(
+				[
+					{ transform: 'translate(-50%, -50%) scale(0.6)', opacity: 1 },
+					{ transform: `translate(calc(-50% + ${driftX}px), calc(-50% + ${driftY}px)) scale(1.25)`, opacity: 0 }
+				],
+				{ duration, easing: 'cubic-bezier(.22,.61,.36,1)', fill: 'forwards' }
+			).onfinish = () => heart.remove();
+		}
+	});
+</script>

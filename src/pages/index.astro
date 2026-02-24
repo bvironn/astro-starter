@@ -1,0 +1,59 @@
+---
+import Button from "../components/Button.astro";
+import Card from "../components/Card.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+	title="Plantilla Astro"
+	description="Plantilla base moderna para arrancar rápido con Astro, Tailwind y componentes reutilizables."
+>
+	<section class="w-full max-w-4xl space-y-8 text-center">
+		<p class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-1 text-sm text-gray-300">
+			<i class="fa-solid fa-rocket text-blue-500" aria-hidden="true"></i>
+			Plantilla lista para producción
+		</p>
+
+		<h1 class="text-balance text-4xl font-semibold leading-tight text-white sm:text-5xl">
+			Construye tu web rápido con una base limpia y moderna.
+		</h1>
+
+		<p class="mx-auto max-w-2xl text-pretty text-base text-gray-300 sm:text-lg">
+			Este starter usa Astro + Tailwind, incluye componentes reutilizables y deja todo preparado
+			para que puedas enfocarte en tu producto desde el día uno.
+		</p>
+
+		<div class="flex flex-wrap items-center justify-center gap-3">
+			<Button href="https://docs.astro.build" target="_blank" variant="primary" size="md" icon="fa-solid fa-book-open">
+				Ver documentación
+			</Button>
+			<Button href="https://tailwindcss.com/docs" target="_blank" variant="secondary" size="md" icon="fa-solid fa-palette">
+				Guía Tailwind
+			</Button>
+		</div>
+
+		<div class="grid gap-3 text-left sm:grid-cols-3">
+			<Card
+				title="Estructura clara"
+				description="Arquitectura por componentes con separación entre layouts, secciones y UI reutilizable para crecer sin acoplar vistas."
+				icon="fa-solid fa-diagram-project"
+			/>
+			<Card
+				title="Estilo consistente"
+				description="Sistema visual apoyado en utilidades de Tailwind: espaciado coherente, contraste accesible y tipografía optimizada para lectura."
+				icon="fa-solid fa-paintbrush"
+			/>
+			<Card
+				title="Inicio rápido"
+				description="Base preparada para desarrollo y despliegue: modifica contenido, reutiliza componentes y publica con pipeline moderno en pocos pasos."
+				icon="fa-solid fa-bolt"
+			/>
+		</div>
+
+		<p class="text-sm text-gray-400">
+			Edita
+			<code class="rounded-md border border-white/20 bg-white/10 px-1.5 py-0.5">src/pages/index.astro</code>
+			para personalizar esta portada.
+		</p>
+	</section>
+</Layout>
